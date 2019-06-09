@@ -10,8 +10,10 @@ const forecast = (latitude,longitude,callback)=>{
             if(error){
                callback('Unable to connect to weather service',undefined)
             }else if(body.error){callback('Unable to find location',undefined)
+            
+            }else{
 
-            }else{callback(undefined,'It is currenly: '+ body.currently.temperature +' there is 0% chance of rain')}
+                callback(undefined,body.daily.data[0].summary +'It is currenly: '+ body.currently.temperature +' degree out. The high tody is '+body.daily.data[0].temperatureHigh+ ' with a low of '+body.daily.data[0].temperatureLow+'. There is ' + body.currently.precipProbability +' chance of rain')}
     }
     )}
 module.exports = forecast
